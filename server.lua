@@ -45,7 +45,6 @@ RegisterNetEvent('Renewed-Chargers:server:takeHandle', function(id, objectCoords
 
     Nozzles[src] = {
         entity = object,
-        station = id,
         netId = netId,
         chargerCoords = objectCoords,
     }
@@ -54,7 +53,7 @@ RegisterNetEvent('Renewed-Chargers:server:takeHandle', function(id, objectCoords
     TriggerClientEvent('Renewed-Chargers:client:ropeMechanic', -1, netId, objectCoords)
 end)
 
-RegisterNetEvent('Renewed-Charging:server:chargeVehicle', function(netId, station)
+lib.callback.register('Renewed-Charging:server:chargeVehicle', function(source, netId)
     local vehicle = NetworkGetEntityFromNetworkId(netId)
 
     local hasNozzle = Nozzles[source]
@@ -70,10 +69,12 @@ RegisterNetEvent('Renewed-Charging:server:chargeVehicle', function(netId, statio
                 chargerCoords = hasNozzle.chargerCoords,
                 nozzle = hasNozzle.entity,
             }, true)
-        else
-            print("Max fuel bozo")
+
+            return true
         end
     end
+
+    return false
 end)
 
 RegisterNetEvent('Renewed-Chargers:server:cancelHandle', function()
@@ -105,7 +106,7 @@ local function doFuelChanges(state, vehicle)
     local timePassed = os.time() - chargingConfig.time
 
     if timePassed < Config.timePerTick then
-        return print("not enough time passed", timePassed)
+        return
     end
 
     local fuel = state.fuel + (Config.fuelPerTick * (timePassed / Config.timePerTick))
@@ -113,9 +114,6 @@ local function doFuelChanges(state, vehicle)
     if fuel > 100 then
         fuel = 100
     end
-
-    print('Set Fuel Level', fuel)
-    print('Set Fuel Type', '100')
 
     state:set('fuel', fuel, true)
     state:set('fuelType', '100', true)

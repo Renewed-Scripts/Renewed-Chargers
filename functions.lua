@@ -41,7 +41,7 @@ function utils.addModel(id, coords)
         coords = vec3(coords.x, coords.y, coords.z),
         heading = coords.w,
         freeze = true,
-        dist = 250,
+        dist = 400,
         id = targetId,
         target = {{
             icon = 'fa-solid fa-magnifying-glass',
@@ -69,7 +69,7 @@ function utils.addModel(id, coords)
     addObject(data)
 end
 
-function utils.requestControl()
+function utils.requestControl(currentCharger)
     while NetworkGetEntityOwner(currentCharger) ~= cache.playerId do
         NetworkRequestControlOfEntity(currentCharger)
         Wait(25)

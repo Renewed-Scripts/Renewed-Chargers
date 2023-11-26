@@ -63,15 +63,25 @@ RegisterNetEvent('Renewed-Charging:client:destroyRope', destroyRope)
 
 
 AddEventHandler('Renewed-Charging:client:addCharger', function(data)
+    if not currentCharger then return end
     local bone, boneOffset = utils.checkVehicleBones(data.entity)
 
     if NetworkGetEntityOwner(currentCharger) ~= cache.playerId then
-        utils.requestControl()
+        utils.requestControl(currentCharger)
     end
 
-    AttachEntityToEntity(currentCharger, data.entity, GetEntityBoneIndexByName(data.entity, bone), -0.05 + boneOffset.x, boneOffset.y, 0.45 + boneOffset.z, 0.0, 0.0, 90.0, true, true, false, false, 1, true)
+    local Charger = currentCharger
 
-    TriggerServerEvent('Renewed-Charging:server:chargeVehicle', VehToNet(data.entity))
+    local canCharge = lib.callback.await('Renewed-Charging:server:chargeVehicle', false, VehToNet(data.entity))
+
+    if canCharge then
+        AttachEntityToEntity(Charger, data.entity, GetEntityBoneIndexByName(data.entity, bone), -0.05 + boneOffset.x, boneOffset.y, 0.45 + boneOffset.z, 0.0, 0.0, 90.0, true, true, false, false, 1, true)
+    else
+        lib.notify({
+            description = 'Vehicle is already fully charged!',
+            type = 'error'
+        })
+    end
 end)
 
 local playerState = LocalPlayer.state
