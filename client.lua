@@ -182,7 +182,7 @@ AddStateBagChangeHandler('vehicleCharging', nil, function(bagName, _, value)
         activePoints[vehicle] = lib.zones.sphere({
             coords = GetEntityCoords(vehicle),
             radius = 20.0,
-            debug = true,
+            debug = false,
             onEnter = function()
                 createRope(value.netId, value.chargerCoords)
             end,
