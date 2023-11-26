@@ -52,7 +52,13 @@ jobs:
       - name: Bundle files
         run: |
           mkdir -p ./temp/Renewed-Chargers
-          cp ./{LICENSE,README.md,fxmanifest.lua,client.lua,Config.lua,functions.lua,server.lua} ./temp/Renewed-Chargers
+          cp ./LICENSE ./temp/Renewed-Chargers
+          cp ./README.md ./temp/Renewed-Chargers
+          cp ./fxmanifest.lua ./temp/Renewed-Chargers
+          cp ./client.lua ./temp/Renewed-Chargers
+          cp ./Config.lua ./temp/Renewed-Chargers
+          cp ./functions.lua ./temp/Renewed-Chargers
+          cp ./server.lua ./temp/Renewed-Chargers
           cp -r ./stream ./temp/Renewed-Chargers
           cd ./temp && zip -r ../Renewed-Chargers.zip ./Renewed-Chargers
 
