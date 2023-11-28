@@ -119,7 +119,10 @@ CreateThread(function()
     for i = 1, #Config.Locations do
         local coords = Config.Locations[i]
 
-        utils.createBlip(coords)
+        if Config.useBlips then
+            utils.createBlip(coords)
+        end
+
         utils.addModel(i, coords)
     end
 end)

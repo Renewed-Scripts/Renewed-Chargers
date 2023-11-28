@@ -2,12 +2,12 @@ return {
     timePerTick = 10, -- How many seconds inbetween each tick? the higher the number the more time clients need to wait for the next tick, and the quicker the fuel is.
     fuelPerTick = 10, -- How much "Fuel" should an electric car get per tick?
 
-
+    useBlips = true,
     Locations = {
         vector4(175.9, -1546.65, 28.26, 224.29),
-        vector4(-51.09, -1767.02, 28.26, 47.16), 
+        vector4(-51.09, -1767.02, 28.26, 47.16),
         vector4(-514.06, -1216.25, 17.46, 66.29),
-        vector4(-704.64, -935.71, 18.21, 90.02), 
+        vector4(-704.64, -935.71, 18.21, 90.02),
         vector4(279.79, -1237.35, 28.35, 181.07),
         vector4(834.27, -1028.7, 26.16, 88.39),
         vector4(1194.41, -1394.44, 34.37, 270.3),
