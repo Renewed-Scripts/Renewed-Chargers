@@ -39,7 +39,7 @@ function utils.addModel(id, coords)
     local data = {
         object = 'electric_charger',
         coords = vec3(coords.x, coords.y, coords.z),
-        heading = coords.w,
+        heading = coords.w - 180,
         freeze = true,
         dist = 400,
         id = targetId,
