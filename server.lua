@@ -1,3 +1,5 @@
+lib.versionCheck('Renewed-Scripts/Renewed-Chargers')
+
 local Config = require 'Config'
 
 local vehiclesCharging = {}

@@ -31,8 +31,6 @@ function utils.createBlip(data)
 	EndTextCommandSetBlipName(blip)
 end
 
-local addObject = exports['Renewed-Lib']:getLib().addObject
-
 function utils.addModel(id, coords)
     local targetId = ('renewed_charger_%s'):format(id)
 
@@ -66,7 +64,7 @@ function utils.addModel(id, coords)
         }}
     }
 
-    addObject(data)
+    exports['Renewed-Lib']:addObject(data)
 end
 
 function utils.requestControl(currentCharger)
