@@ -22,4 +22,4 @@ Contributions are always welcome! Please create a pull request or an issue if yo
 
 ## License
 
-This project is licensed under the GPL V3 License.
+This project is licensed under the GPL V3 License.a
